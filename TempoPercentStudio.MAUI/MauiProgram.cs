@@ -31,6 +31,9 @@ namespace TempoPercentStudio.MAUI
             builder.Services.AddSingleton<AddPersonalBestView>();
             builder.Services.AddSingleton<AddPersonalBestViewModel>();
 
+            builder.Services.AddSingleton<CalculateTempoView>();
+            builder.Services.AddSingleton<CalculateTempoViewModel>();
+
             return builder.Build();
         }
     }

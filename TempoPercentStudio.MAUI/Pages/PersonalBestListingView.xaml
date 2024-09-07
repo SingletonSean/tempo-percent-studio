@@ -25,6 +25,7 @@
                                         <Label Text="{Binding Distance}" />
                                         <Label Text="{Binding Time}" />
                                         <Button Command="{Binding DeletePersonalBestCommand}" Text="Delete" />
+                                        <ActivityIndicator IsRunning="{Binding DeletePersonalBestCommand.IsRunning}" />
                                     </HorizontalStackLayout>
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
