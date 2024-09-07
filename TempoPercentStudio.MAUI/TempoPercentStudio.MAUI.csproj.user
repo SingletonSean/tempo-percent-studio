@@ -32,11 +32,5 @@
     <None Update="Platforms\Windows\Package.appxmanifest">
       <SubType>Designer</SubType>
     </None>
-    <None Update="Resources\Styles\Colors.xaml">
-      <SubType>Designer</SubType>
-    </None>
-    <None Update="Resources\Styles\Styles.xaml">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
 </Project>

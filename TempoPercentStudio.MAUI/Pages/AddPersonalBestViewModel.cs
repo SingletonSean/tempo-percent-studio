@@ -1,30 +1,37 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using TempoPercentStudio.MAUI.Entities.PersonalBests;
 
 namespace TempoPercentStudio.MAUI.Pages
 {
     public partial class AddPersonalBestViewModel : ObservableObject
     {
+        private readonly PersonalBestRepository _repository;
+
         [ObservableProperty]
         private double _distance;
 
         [ObservableProperty]
-        private double _minutes;
+        private int _minutes;
 
         [ObservableProperty]
-        private double _seconds;
+        private int _seconds;
 
         [ObservableProperty]
-        private double _milliseconds;
+        private int _milliseconds;
+
+        public AddPersonalBestViewModel(PersonalBestRepository repository)
+        {
+            _repository = repository;
+        }
 
         [RelayCommand]
         public async Task Submit()
         {
+            await _repository.Create(new NewPersonalBest(
+                Distance, 
+                new TimeSpan(0, 0, Minutes, Seconds, Milliseconds)));
+
             await Shell.Current.GoToAsync("..");
         }
     }
