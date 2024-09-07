@@ -44,5 +44,6 @@
             </Grid>
         </VerticalStackLayout>
         <Button Command="{Binding SubmitCommand}" Text="Submit" />
+        <ActivityIndicator IsRunning="{Binding SubmitCommand.IsRunning}" />
     </VerticalStackLayout>
 </ContentPage>

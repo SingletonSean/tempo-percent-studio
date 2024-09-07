@@ -28,11 +28,18 @@ namespace TempoPercentStudio.MAUI.Pages
         [RelayCommand]
         private async Task Submit()
         {
-            await _repository.Create(new NewPersonalBest(
-                Distance, 
-                new TimeSpan(0, 0, Minutes, Seconds, Milliseconds)));
+            try
+            {
+                await _repository.Create(new NewPersonalBest(
+                    Distance,
+                    new TimeSpan(0, 0, Minutes, Seconds, Milliseconds)));
 
-            await Shell.Current.GoToAsync("..");
+                await Shell.Current.GoToAsync("..");
+            }
+            catch (Exception)
+            {
+                await Shell.Current.DisplayAlert("Error", "Failed to create personal best. Please try again.", "Ok");
+            }
         }
     }
 }
