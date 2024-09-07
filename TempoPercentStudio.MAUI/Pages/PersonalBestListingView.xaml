@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="TempoPercentStudio.MAUI.Pages.PersonalBestListingView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:Routini.MAUI.Shared.Components">
+    <VerticalStackLayout>
+        <Button Command="{Binding NavigateAddPersonalBestCommand}" Text="Add" />
+
+        <components:If Margin="0,20,0,0" Condition="{Binding IsLoading}">
+            <components:If.True>
+                <ActivityIndicator IsRunning="True" />
+            </components:If.True>
+            <components:If.False>
+                <components:If Condition="{Binding HasError}">
+                    <components:If.True>
+                        <Label Text="{Binding ErrorMessage}" />
+                    </components:If.True>
+                    <components:If.False>
+                        <CollectionView ItemsSource="{Binding PersonalBests}">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <HorizontalStackLayout>
+                                        <Label Text="{Binding Distance}" />
+                                        <Label Text="{Binding Time}" />
+                                        <Button Command="{Binding DeletePersonalBestCommand}" Text="Delete" />
+                                    </HorizontalStackLayout>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </components:If.False>
+                </components:If>
+            </components:If.False>
+        </components:If>
+    </VerticalStackLayout>
+</ContentPage>

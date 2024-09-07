@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="TempoPercentStudio.MAUI.Pages.AddPersonalBestView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Add Personal Best">
+    <VerticalStackLayout>
+        <VerticalStackLayout>
+            <Label Text="Distance (meters)" />
+            <Entry Text="{Binding Distance}" />
+        </VerticalStackLayout>
+        <VerticalStackLayout>
+            <Label Text="Time (mm:ss.xx)" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <Entry
+                    Grid.Column="0"
+                    MaxLength="2"
+                    Text="{Binding Minutes}" />
+                <Label
+                    Grid.Column="1"
+                    HorizontalOptions="Center"
+                    Text=":"
+                    VerticalOptions="Center" />
+                <Entry
+                    Grid.Column="2"
+                    MaxLength="2"
+                    Text="{Binding Seconds}" />
+                <Label
+                    Grid.Column="3"
+                    HorizontalOptions="Center"
+                    Text="."
+                    VerticalOptions="Center" />
+                <Entry
+                    Grid.Column="4"
+                    MaxLength="2"
+                    Text="{Binding Milliseconds}" />
+            </Grid>
+        </VerticalStackLayout>
+        <Button Command="{Binding SubmitCommand}" Text="Submit" />
+    </VerticalStackLayout>
+</ContentPage>
