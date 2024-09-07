@@ -19,7 +19,14 @@ namespace TempoPercentStudio.MAUI.Entities.PersonalBests
 
         public async Task<IEnumerable<PersonalBest>> GetAll()
         {
-            return null;
+            ISQLiteAsyncConnection database = _sqliteConnectionFactory.Connect();
+
+            List<PersonalBestDto> personalBestDtos = await database.Table<PersonalBestDto>().ToListAsync();
+
+            return personalBestDtos.Select(dto => new PersonalBest(
+                dto.Id, 
+                dto.Distance, 
+                TimeSpan.FromMilliseconds(dto.TimeMilliseconds)));
         }
 
         public async Task<PersonalBest> Create(NewPersonalBest newPersonalBest)

@@ -3,11 +3,12 @@
     x:Class="TempoPercentStudio.MAUI.Pages.PersonalBestListingView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:components="clr-namespace:Routini.MAUI.Shared.Components">
+    xmlns:components="clr-namespace:Routini.MAUI.Shared.Components"
+    OnAppearingCommand="{Binding LoadPersonalBestsCommand}">
     <VerticalStackLayout>
         <Button Command="{Binding NavigateAddPersonalBestCommand}" Text="Add" />
 
-        <components:If Margin="0,20,0,0" Condition="{Binding IsLoading}">
+        <components:If Margin="0,20,0,0" Condition="{Binding LoadPersonalBestsCommand.IsRunning}">
             <components:If.True>
                 <ActivityIndicator IsRunning="True" />
             </components:If.True>

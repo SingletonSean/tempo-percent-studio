@@ -26,7 +26,7 @@ namespace TempoPercentStudio.MAUI.Pages
         }
 
         [RelayCommand]
-        public async Task Submit()
+        private async Task Submit()
         {
             await _repository.Create(new NewPersonalBest(
                 Distance, 

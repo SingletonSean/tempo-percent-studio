@@ -13,8 +13,7 @@ namespace TempoPercentStudio.MAUI.Pages
 {
     public partial class PersonalBestListingViewModel : ObservableObject
     {
-        [ObservableProperty]
-        private bool _isLoading;
+        private readonly PersonalBestRepository _repository;
 
         [ObservableProperty]
         private bool _hasError;
@@ -24,14 +23,36 @@ namespace TempoPercentStudio.MAUI.Pages
 
         public ObservableCollection<PersonalBestListingItemViewModel> PersonalBests { get; }
 
-        public PersonalBestListingViewModel()
+        public PersonalBestListingViewModel(PersonalBestRepository repository)
         {
-            PersonalBests = new ObservableCollection<PersonalBestListingItemViewModel>()
+            _repository = repository;
+
+            PersonalBests = new ObservableCollection<PersonalBestListingItemViewModel>();
+        }
+
+        [RelayCommand]
+        private async Task LoadPersonalBests()
+        {
+            HasError = false;
+
+            try
             {
-                new PersonalBestListingItemViewModel(OnPersonalBestDelete),
-                new PersonalBestListingItemViewModel(OnPersonalBestDelete),
-                new PersonalBestListingItemViewModel(OnPersonalBestDelete),
-            };
+                PersonalBests.Clear();
+
+                IEnumerable<PersonalBest> personalBests = await _repository.GetAll();
+
+                foreach (PersonalBest personalBest in personalBests)
+                {
+                    PersonalBests.Add(new PersonalBestListingItemViewModel(personalBest, OnPersonalBestDelete));
+                }
+
+                HasError = false;
+            }
+            catch (Exception)
+            {
+                HasError = true;
+                ErrorMessage = "Failed to load personal bests.";
+            }
         }
 
         private async Task OnPersonalBestDelete(PersonalBestListingItemViewModel viewModel)
@@ -50,7 +71,7 @@ namespace TempoPercentStudio.MAUI.Pages
         }
 
         [RelayCommand]
-        public async Task NavigateAddPersonalBest()
+        private async Task NavigateAddPersonalBest()
         {
             await Shell.Current.GoToAsync("AddPersonalBest");
         }
