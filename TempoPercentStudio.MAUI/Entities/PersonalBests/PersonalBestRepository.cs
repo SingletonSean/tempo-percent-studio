@@ -49,7 +49,9 @@ namespace TempoPercentStudio.MAUI.Entities.PersonalBests
 
         public async Task Delete(int id)
         {
+            ISQLiteAsyncConnection database = _sqliteConnectionFactory.Connect();
 
+            await database.Table<PersonalBestDto>().DeleteAsync(dto => dto.Id == id);
         }
     }
 }

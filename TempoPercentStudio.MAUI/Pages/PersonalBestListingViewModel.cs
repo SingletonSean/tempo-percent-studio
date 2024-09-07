@@ -67,7 +67,16 @@ namespace TempoPercentStudio.MAUI.Pages
                 return;
             }
 
-            PersonalBests.Remove(viewModel);
+            try
+            {
+                await _repository.Delete(viewModel.Id);
+
+                PersonalBests.Remove(viewModel);
+            }
+            catch (Exception)
+            {
+                await Shell.Current.DisplayAlert("Error", "Failed to delete personal best. Please try again.", "Ok");
+            }
         }
 
         [RelayCommand]

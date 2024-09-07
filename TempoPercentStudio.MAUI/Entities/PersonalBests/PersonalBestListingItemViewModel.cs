@@ -8,6 +8,7 @@ namespace TempoPercentStudio.MAUI.Entities.PersonalBests
         private readonly PersonalBest _personalBest;
         private readonly Func<PersonalBestListingItemViewModel, Task> _onDelete;
 
+        public int Id => _personalBest.Id;
         public string Distance => _personalBest.Distance.ToString();
         public string Time => _personalBest.Time.ToString();
 
