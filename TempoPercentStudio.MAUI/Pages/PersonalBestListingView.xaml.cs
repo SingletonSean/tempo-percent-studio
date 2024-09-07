@@ -5,7 +5,7 @@ namespace TempoPercentStudio.MAUI.Pages;
 public partial class PersonalBestListingView : ContentPage
 {
 	public static readonly BindableProperty OnAppearingCommandProperty =
-		BindableProperty.Create(nameof(OnAppearingCommand), typeof(ICommand), typeof(BindableObject), null);
+		BindableProperty.Create(nameof(OnAppearingCommand), typeof(ICommand), typeof(PersonalBestListingView), null);
 
 	public ICommand OnAppearingCommand
 	{

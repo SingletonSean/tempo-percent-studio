@@ -2,11 +2,46 @@
 <ContentPage
     x:Class="TempoPercentStudio.MAUI.Pages.CalculateTempoView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    OnAppearingCommand="{Binding LoadPersonalBestsCommand}">
     <VerticalStackLayout>
-        <Label
-            HorizontalOptions="Center"
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" />
+        <Label>
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="What" />
+                    <Span FontAttributes="Bold" Text=" distance " />
+                    <Span Text="do you need to run?" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+        <Picker
+            ItemDisplayBinding="{Binding Distance}"
+            ItemsSource="{Binding PersonalBests}"
+            SelectedItem="{Binding SelectedPersonalBest}" />
+        <Label>
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="What" />
+                    <Span FontAttributes="Bold" Text=" percent effort " />
+                    <Span Text="do you need to run at?" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+        <Slider
+            Maximum="100"
+            Minimum="0"
+            Value="{Binding PercentEffort}" />
+        <Entry Text="{Binding PercentEffort}" />
+        <Label>
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="You need to run the " />
+                    <Span FontAttributes="Bold" Text="{Binding DistanceOutput}" />
+                    <Span Text=" in " />
+                    <Span FontAttributes="Bold" Text="{Binding TimeOutput}" />
+                    <Span Text="." />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
     </VerticalStackLayout>
 </ContentPage>
