@@ -20,6 +20,15 @@
             set => SetValue(MaximumProperty, value);
         }
 
+        public static readonly BindableProperty MaximumDecimalPlacesProperty =
+            BindableProperty.Create(nameof(MaximumDecimalPlaces), typeof(int), typeof(NumericRangeEntry), 0);
+
+        public int MaximumDecimalPlaces
+        {
+            get => (int)GetValue(MaximumDecimalPlacesProperty);
+            set => SetValue(MaximumDecimalPlacesProperty, value);
+        }
+
         public NumericRangeEntry()
         {
             TextChanged += NumericRangeEntry_TextChanged;
@@ -31,6 +40,26 @@
             {
                 Text = Minimum.ToString();
                 return;
+            }
+
+            string[] decimalSplitNewText = e.NewTextValue.Split('.');
+            bool hasDecimals = decimalSplitNewText.Length > 1;
+
+            if (hasDecimals)
+            {
+                if (MaximumDecimalPlaces == 0)
+                {
+                    Text = e.OldTextValue;
+                    return;
+                }
+
+                string decimals = decimalSplitNewText[1];
+
+                if (decimals.Length > MaximumDecimalPlaces)
+                {
+                    Text = e.OldTextValue;
+                    return;
+                }
             }
 
             if (!double.TryParse(e.NewTextValue, out double newDoubleValue))
