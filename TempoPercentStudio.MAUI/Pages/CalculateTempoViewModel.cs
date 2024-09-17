@@ -37,10 +37,10 @@ namespace TempoPercentStudio.MAUI.Pages
             }
         }
 
-        [ObservableProperty]
-        private bool _hasError;
+        public bool HasError => !string.IsNullOrEmpty(ErrorMessage);
 
         [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(HasError))]
         private string? _errorMessage;
 
         public ObservableCollection<CalculateTempoPersonalBestViewModel> PersonalBests { get; }
@@ -55,7 +55,7 @@ namespace TempoPercentStudio.MAUI.Pages
         [RelayCommand]
         private async Task LoadPersonalBests()
         {
-            HasError = false;
+            ErrorMessage = null;
 
             try
             {
@@ -67,12 +67,9 @@ namespace TempoPercentStudio.MAUI.Pages
                 {
                     PersonalBests.Add(new CalculateTempoPersonalBestViewModel(personalBest));
                 }
-
-                HasError = false;
             }
             catch (Exception)
             {
-                HasError = true;
                 ErrorMessage = "Failed to load personal bests.";
             }
         }

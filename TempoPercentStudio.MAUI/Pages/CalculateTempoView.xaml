@@ -3,45 +3,60 @@
     x:Class="TempoPercentStudio.MAUI.Pages.CalculateTempoView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:Routini.MAUI.Shared.Components"
     OnAppearingCommand="{Binding LoadPersonalBestsCommand}">
-    <VerticalStackLayout>
-        <Label>
-            <Label.FormattedText>
-                <FormattedString>
-                    <Span Text="What" />
-                    <Span FontAttributes="Bold" Text=" distance " />
-                    <Span Text="do you need to run?" />
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
-        <Picker
-            ItemDisplayBinding="{Binding Distance}"
-            ItemsSource="{Binding PersonalBests}"
-            SelectedItem="{Binding SelectedPersonalBest}" />
-        <Label>
-            <Label.FormattedText>
-                <FormattedString>
-                    <Span Text="What" />
-                    <Span FontAttributes="Bold" Text=" percent effort " />
-                    <Span Text="do you need to run at?" />
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
-        <Slider
-            Maximum="100"
-            Minimum="0"
-            Value="{Binding PercentEffort}" />
-        <Entry Text="{Binding PercentEffort}" />
-        <Label>
-            <Label.FormattedText>
-                <FormattedString>
-                    <Span Text="You need to run the " />
-                    <Span FontAttributes="Bold" Text="{Binding DistanceOutput}" />
-                    <Span Text=" in " />
-                    <Span FontAttributes="Bold" Text="{Binding TimeOutput}" />
-                    <Span Text="." />
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
-    </VerticalStackLayout>
+    <components:If Condition="{Binding LoadPersonalBestsCommand.IsRunning}">
+        <components:If.True>
+            <ActivityIndicator IsRunning="True" />
+        </components:If.True>
+        <components:If.False>
+            <components:If Condition="{Binding HasError}">
+                <components:If.True>
+                    <Label Text="{Binding ErrorMessage}" />
+                </components:If.True>
+                <components:If.False>
+                    <VerticalStackLayout>
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="What" />
+                                    <Span FontAttributes="Bold" Text=" distance " />
+                                    <Span Text="do you need to run?" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Picker
+                            ItemDisplayBinding="{Binding Distance}"
+                            ItemsSource="{Binding PersonalBests}"
+                            SelectedItem="{Binding SelectedPersonalBest}" />
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="What" />
+                                    <Span FontAttributes="Bold" Text=" percent effort " />
+                                    <Span Text="do you need to run at?" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Slider
+                            Maximum="100"
+                            Minimum="0"
+                            Value="{Binding PercentEffort}" />
+                        <Entry Text="{Binding PercentEffort}" />
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="You need to run the " />
+                                    <Span FontAttributes="Bold" Text="{Binding DistanceOutput}" />
+                                    <Span Text=" in " />
+                                    <Span FontAttributes="Bold" Text="{Binding TimeOutput}" />
+                                    <Span Text="." />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </VerticalStackLayout>
+                </components:If.False>
+            </components:If>
+        </components:If.False>
+    </components:If>
 </ContentPage>
