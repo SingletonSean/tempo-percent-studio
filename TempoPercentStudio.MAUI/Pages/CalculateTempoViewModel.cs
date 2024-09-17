@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
+using System.Xml.Linq;
 using TempoPercentStudio.MAUI.Entities.PersonalBests;
 using TempoPercentStudio.MAUI.Features.CalculateTempo;
 
@@ -15,10 +16,18 @@ namespace TempoPercentStudio.MAUI.Pages
         [NotifyPropertyChangedFor(nameof(TimeOutput))]
         private CalculateTempoPersonalBestViewModel? _selectedPersonalBest;
 
-        [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(DistanceOutput))]
-        [NotifyPropertyChangedFor(nameof(TimeOutput))]
         private double _percentEffort = 50;
+        public double PercentEffort
+        {
+            get => _percentEffort;
+            set
+            {
+                SetProperty(ref _percentEffort, Math.Round(value, 0));
+
+                OnPropertyChanged(nameof(DistanceOutput));
+                OnPropertyChanged(nameof(TimeOutput));
+            }
+        }
 
         public string? DistanceOutput => SelectedPersonalBest?.Distance;
 
