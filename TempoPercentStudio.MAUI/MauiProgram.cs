@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using CommunityToolkit.Maui;
+using Microsoft.Extensions.Logging;
 using TempoPercentStudio.MAUI.Entities.PersonalBests;
 using TempoPercentStudio.MAUI.Pages;
 using TempoPercentStudio.MAUI.Shared.Database;
@@ -12,6 +13,7 @@ namespace TempoPercentStudio.MAUI
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
