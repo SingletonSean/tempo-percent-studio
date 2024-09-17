@@ -38,6 +38,7 @@
         {
             if (string.IsNullOrEmpty(e.NewTextValue))
             {
+                Text = Minimum.ToString();
                 return;
             }
 
@@ -64,12 +65,6 @@
             if (!double.TryParse(e.NewTextValue, out double newDoubleValue))
             {
                 Text = e.OldTextValue;
-                return;
-            }
-
-            if (Minimum != null && newDoubleValue < Minimum)
-            {
-                Text = Minimum.ToString();
                 return;
             }
 

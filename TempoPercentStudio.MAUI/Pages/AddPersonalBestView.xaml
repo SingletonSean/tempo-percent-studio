@@ -11,6 +11,7 @@
             <components:NumericRangeEntry
                 Keyboard="Numeric"
                 Minimum="1"
+                Placeholder="400"
                 Text="{Binding Distance}" />
         </VerticalStackLayout>
         <VerticalStackLayout>
@@ -27,6 +28,7 @@
                     Grid.Column="0"
                     Keyboard="Numeric"
                     Minimum="0"
+                    Placeholder="00"
                     Text="{Binding Minutes}" />
                 <Label
                     Grid.Column="1"
@@ -38,6 +40,7 @@
                     Keyboard="Numeric"
                     Maximum="59"
                     Minimum="0"
+                    Placeholder="00"
                     Text="{Binding Seconds}" />
                 <Label
                     Grid.Column="3"
@@ -50,6 +53,7 @@
                     MaxLength="2"
                     Maximum="99"
                     Minimum="0"
+                    Placeholder="00"
                     Text="{Binding Milliseconds}" />
             </Grid>
         </VerticalStackLayout>
