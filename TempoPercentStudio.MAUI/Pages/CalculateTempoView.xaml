@@ -51,7 +51,6 @@
                         <components:NumericRangeEntry
                             Keyboard="Numeric"
                             Maximum="100"
-                            MaximumDecimalPlaces="0"
                             Minimum="1"
                             Text="{Binding PercentEffort}" />
                         <Label>

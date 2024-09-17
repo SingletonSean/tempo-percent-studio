@@ -3,11 +3,11 @@
     public class NumericRangeEntry : Entry
     {
         public static readonly BindableProperty MinimumProperty =
-            BindableProperty.Create(nameof(Minimum), typeof(double), typeof(NumericRangeEntry), 0.0);
+            BindableProperty.Create(nameof(Minimum), typeof(double?), typeof(NumericRangeEntry), null);
 
-        public double Minimum
+        public double? Minimum
         {
-            get => (double)GetValue(MinimumProperty);
+            get => (double?)GetValue(MinimumProperty);
             set => SetValue(MinimumProperty, value);
         }
 
@@ -38,7 +38,6 @@
         {
             if (string.IsNullOrEmpty(e.NewTextValue))
             {
-                Text = Minimum.ToString();
                 return;
             }
 
@@ -65,6 +64,12 @@
             if (!double.TryParse(e.NewTextValue, out double newDoubleValue))
             {
                 Text = e.OldTextValue;
+                return;
+            }
+
+            if (Minimum != null && newDoubleValue < Minimum)
+            {
+                Text = Minimum.ToString();
                 return;
             }
 
