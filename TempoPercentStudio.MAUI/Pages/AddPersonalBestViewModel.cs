@@ -18,7 +18,7 @@ namespace TempoPercentStudio.MAUI.Pages
         private int _seconds;
 
         [ObservableProperty]
-        private int _milliseconds;
+        private string _milliseconds = "00";
 
         public AddPersonalBestViewModel(PersonalBestRepository repository)
         {
@@ -30,9 +30,12 @@ namespace TempoPercentStudio.MAUI.Pages
         {
             try
             {
+                string paddedMilliseconds = Milliseconds.PadRight(3, '0');
+                int parsedMilliseconds = int.Parse(paddedMilliseconds);
+
                 await _repository.Create(new NewPersonalBest(
                     Distance,
-                    new TimeSpan(0, 0, Minutes, Seconds, Milliseconds)));
+                    new TimeSpan(0, 0, Minutes, Seconds, parsedMilliseconds)));
 
                 await Shell.Current.GoToAsync("..");
             }
