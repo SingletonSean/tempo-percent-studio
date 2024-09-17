@@ -18,7 +18,7 @@ namespace TempoPercentStudio.MAUI.Pages
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(DistanceOutput))]
         [NotifyPropertyChangedFor(nameof(TimeOutput))]
-        private int _percentEffort = 50;
+        private double _percentEffort = 50;
 
         public string? DistanceOutput => SelectedPersonalBest?.Distance;
 

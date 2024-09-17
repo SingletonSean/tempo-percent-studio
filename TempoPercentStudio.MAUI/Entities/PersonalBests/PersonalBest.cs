@@ -13,7 +13,7 @@
             Time = time;
         }
 
-        public TimeSpan CalculateTempoPercent(int percentEffort)
+        public TimeSpan CalculateTempoPercent(double percentEffort)
         {
             double percentEffortInputDecimal = percentEffort / 100.0;
             double timeInputMilliseconds = Time.TotalMilliseconds;

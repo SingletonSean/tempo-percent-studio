@@ -3,7 +3,7 @@
     x:Class="TempoPercentStudio.MAUI.Pages.PersonalBestListingView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:components="clr-namespace:Routini.MAUI.Shared.Components"
+    xmlns:components="clr-namespace:TempoPercentStudio.MAUI.Shared.Components"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
     <ContentPage.Behaviors>
         <toolkit:EventToCommandBehavior Command="{Binding LoadPersonalBestsCommand}" EventName="Appearing" />
