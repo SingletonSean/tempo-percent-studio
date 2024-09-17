@@ -31,11 +31,9 @@ namespace TempoPercentStudio.MAUI.Pages
                     return null;
                 }
 
-                TempoPercentCalculation calculation = new TempoPercentCalculation(
-                    PercentEffort, 
-                    SelectedPersonalBest.PersonalBest.Time);
+                PersonalBest personalBest = SelectedPersonalBest.PersonalBest;
 
-                return calculation.TimeOutput.ToString();
+                return personalBest.CalculateTempoPercent(PercentEffort).ToString();
             }
         }
 

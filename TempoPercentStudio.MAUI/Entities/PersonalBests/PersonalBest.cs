@@ -12,5 +12,15 @@
             Distance = distance;
             Time = time;
         }
+
+        public TimeSpan CalculateTempoPercent(int percentEffort)
+        {
+            double percentEffortInputDecimal = percentEffort / 100.0;
+            double timeInputMilliseconds = Time.TotalMilliseconds;
+
+            double calculatedMilliseconds = timeInputMilliseconds * (2 - percentEffortInputDecimal);
+
+            return TimeSpan.FromMilliseconds(calculatedMilliseconds);
+        }
     }
 }
