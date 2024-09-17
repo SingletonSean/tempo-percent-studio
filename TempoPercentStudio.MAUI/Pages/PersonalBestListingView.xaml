@@ -15,7 +15,10 @@
             <components:If.False>
                 <components:If Condition="{Binding HasError}">
                     <components:If.True>
-                        <Label Text="{Binding ErrorMessage}" />
+                        <VerticalStackLayout>
+                            <Label Text="{Binding ErrorMessage}" />
+                            <Button Command="{Binding LoadPersonalBestsCommand}" Text="Reload" />
+                        </VerticalStackLayout>
                     </components:If.True>
                     <components:If.False>
                         <CollectionView ItemsSource="{Binding PersonalBests}">
