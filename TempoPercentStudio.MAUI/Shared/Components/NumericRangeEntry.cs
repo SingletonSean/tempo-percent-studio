@@ -12,11 +12,11 @@
         }
 
         public static readonly BindableProperty MaximumProperty =
-            BindableProperty.Create(nameof(Maximum), typeof(double), typeof(NumericRangeEntry), 100.0);
+            BindableProperty.Create(nameof(Maximum), typeof(double?), typeof(NumericRangeEntry), null);
 
-        public double Maximum
+        public double? Maximum
         {
-            get => (double)GetValue(MaximumProperty);
+            get => (double?)GetValue(MaximumProperty);
             set => SetValue(MaximumProperty, value);
         }
 
@@ -68,7 +68,7 @@
                 return;
             }
 
-            if (newDoubleValue > Maximum)
+            if (Maximum != null && newDoubleValue > Maximum)
             {
                 Text = Maximum.ToString();
                 return;
