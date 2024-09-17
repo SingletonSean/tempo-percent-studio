@@ -31,13 +31,11 @@ namespace TempoPercentStudio.MAUI.Pages
                     return null;
                 }
 
-                double percentEffortDecimal = PercentEffort / 100.0;
-                double personalBestMilliseconds = SelectedPersonalBest.PersonalBest.Time.TotalMilliseconds;
+                TempoPercentCalculation calculation = new TempoPercentCalculation(
+                    PercentEffort, 
+                    SelectedPersonalBest.PersonalBest.Time);
 
-                double calculatedMilliseconds = personalBestMilliseconds * (2 - percentEffortDecimal);
-                TimeSpan calculatedTime = TimeSpan.FromMilliseconds(calculatedMilliseconds);
-
-                return calculatedTime.ToString();
+                return calculation.TimeOutput.ToString();
             }
         }
 
